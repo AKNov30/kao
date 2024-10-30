@@ -17,7 +17,7 @@ export default function AdminLayout({ children }) {
         />
       )}
       <SidebarAdmin show={showSidebar} setter={setShowSidebar} /> 
-      <div className="flex-grow">
+      <div className="flex-grow md:pl-[255px] pt-1">
         {children} 
       </div>
     </div>

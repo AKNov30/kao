@@ -27,7 +27,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className="flex h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex h-screen-minus-navbar flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Image
             alt="Your Company"

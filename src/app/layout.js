@@ -9,7 +9,7 @@ export default async function RootLayout({ children }) {
       <body>
       <ClientSessionProvider>
         <Navbar />
-        <main>{children}</main>
+        <main className='pt-16'>{children}</main>
       </ClientSessionProvider>
       </body>
     </html>
