@@ -5,6 +5,12 @@ export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const { pathname } = req.nextUrl;
 
+  // ถ้าหน้านั้นๆ เป็น public page ให้ข้าม middleware นี้ได้เลย
+  const publicPaths = ["/auth/login"];
+  if (publicPaths.includes(pathname)) {
+    return NextResponse.next();
+  }
+
   // Debugging: ตรวจสอบค่า token และ pathname
   console.log("Token in Middleware:", token);
   console.log("Requested Path:", pathname);
@@ -26,5 +32,5 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/admin", "/home/:path*", "/home"],
+  matcher: ["/:path*", "/admin/:path*", "/home/:path*"],
 };
