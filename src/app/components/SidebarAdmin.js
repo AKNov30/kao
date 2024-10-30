@@ -53,7 +53,7 @@ export default function SidebarAdmin({ show, setter }) {
         </div>
         <div className="flex flex-col space-y-1">
           <MenuItem name="Home" route="/admin" icon={<SlHome />} />
-          <MenuItem name="AddProduct" route="/add-product" icon={<CgAddR />} />
+          <MenuItem name="AddProduct" route="/admin/addproduct" icon={<CgAddR />} />
           <MenuItem name="ListUser" route="/list-user" icon={<CgUser />} />
         </div>
       </div>

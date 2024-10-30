@@ -1,3 +1,4 @@
+// middleware.js
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 
@@ -30,16 +31,37 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 
-  // ตรวจสอบ role ของ user
+  // ตรวจสอบ role ของ user ไม่ให้เข้าหน้า admin
   if (token.role === "user" && pathname === "/admin") {
     console.log("User does not have admin role, redirecting to home.");
     return NextResponse.redirect(new URL("/home", req.url));
   }
 
-  // ตรวจสอบ role ของ user สำหรับหน้า /register
+  // ตรวจสอบ role ของ user สำหรับหน้า /admin และ /admin/addproduct ไม่ให้เข้าถ้าผู้ใช้ไม่มีสิทธิ์ admin
+  if (
+    (pathname === "/admin" || pathname === "/admin/addproduct") &&
+    token.role !== "admin"
+  ) {
+    console.log("User does not have admin role, redirecting to home.");
+    return NextResponse.redirect(new URL("/home", req.url));
+  }
+
+  // ตรวจสอบ role ของ user สำหรับหน้า /register ไม่ให้เข้า
   if (token.role !== "admin" && pathname === "/auth/register") {
     console.log("User does not have admin role, redirecting to home.");
     return NextResponse.redirect(new URL("/home", req.url));
+  }
+
+  // ตรวจสอบ role ของ user สำหรับ API เส้นทาง /api/auth/register
+  if (pathname === "/api/auth/register" && token.role !== "admin") {
+    console.log("User does not have admin role, blocking register API access.");
+    return new NextResponse("Unauthorized", { status: 403 });
+  }
+
+  // ตรวจสอบ role ของ user สำหรับ API เส้นทาง /api/admin
+  if (pathname.startsWith("/api/admin") && token.role !== "admin") {
+    console.log("User does not have admin role, blocking API access.");
+    return new NextResponse("Unauthorized", { status: 403 });
   }
 
   console.log("Access granted to path:", pathname);
@@ -50,10 +72,11 @@ export const config = {
   matcher: [
     "/",
     "/admin/:path*",
+    "/admin/addproduct",
     "/home/:path*",
     "/auth/login",
     "/auth/register",
-
     "/api/auth/register",
+    "/api/admin/:path*",
   ],
 };
