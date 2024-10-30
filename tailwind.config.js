@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        'screen-minus-navbar': 'calc(100vh - 66px)',
+        'screen-minus-navbar': 'calc(80vh)',
       },
     },
   },
