@@ -9,7 +9,13 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        'screen-minus-navbar': 'calc(100vh - 66px)',
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

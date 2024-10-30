@@ -26,6 +26,10 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  if (pathname === "/auth/login") {
+    return null;
+  }
+
   const handleLogout = () => {
     signOut({ callbackUrl: "/auth/login" });
   };
