@@ -9,7 +9,7 @@ export async function POST(req) {
   const db = await mysql.createConnection(process.env.DATABASE_URL);
 
   try {
-    await db.execute("INSERT INTO users (username, password, user_role) VALUES (?, ?, ?)", [username, hashedPassword, role]);
+    await db.execute("INSERT INTO users (username, password, user_role) VALUES (?, ?, ?)", [username, hashedPassword, role || 'user']);
     return new Response("User registered successfully", { status: 201 });
   } catch (error) {
     console.error("Error registering user:", error);
