@@ -24,16 +24,20 @@ export default function RootLayout({ children }) {
 
 function LayoutContent({ children }) {
   const pathname = usePathname();
-  const shouldShowSidebar = pathname !== "/auth/login";
+  // const shouldShowSidebar = pathname !== "/auth/login";
+  const hideSidebar = pathname == "/auth/login";
   const { showSidebar } = useSidebarVisibility();
-  const displaySidebar = showSidebar && shouldShowSidebar;
+  // const displaySidebar = showSidebar && shouldShowSidebar;
 
   return (
     <div className="flex">
+      <SidebarVisibilityProvider>
       {showSidebar && <Sidebar />}
-      <main className={`pt-16 flex-1 sm:ml-[20rem] ml-0`}>
+      <main className={`pt-16 flex-1 ${hideSidebar ? 'ml-0' : 'sm:ml-[20rem] ml-0'}`}>
+      {/* <main className={`pt-16 flex-1 sm:ml-[20rem] ml-0`}> */}
         {children}
       </main>
+      </SidebarVisibilityProvider>
     </div>
   );
 }

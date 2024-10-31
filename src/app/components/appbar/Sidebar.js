@@ -32,7 +32,11 @@ export default function Sidebar() {
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="text-gray-700 p-2 rounded-md hover:bg-gray-200 focus:outline-none"
         >
-          {isSidebarOpen ? <HiX className="h-6 w-6" /> : <HiMenu className="h-6 w-6" />}
+          {isSidebarOpen ? (
+            <HiX className="h-6 w-6" />
+          ) : (
+            <HiMenu className="h-6 w-6" />
+          )}
         </button>
       </div>
 
@@ -71,7 +75,7 @@ export default function Sidebar() {
             รายการสินค้า
           </Link>
           <Link
-            href="/bills"
+            href="/home/bills"
             className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
           >
             <div className="grid mr-4 place-items-center">
@@ -92,7 +96,7 @@ export default function Sidebar() {
             บิล
           </Link>
           <Link
-            href="/failed-bills"
+            href="/home/failed-bills"
             className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"
           >
             <div className="grid mr-4 place-items-center">
@@ -159,15 +163,21 @@ export default function Sidebar() {
             {isKeyHelperOpen && (
               <div className="overflow-hidden">
                 <nav className="flex flex-col gap-1 p-2 text-blue-gray-700">
-                  <div role="button" className="p-3">
-                    ชุดรวมเลข
-                  </div>
-                  <div role="button" className="p-3">
-                    เลขลาก
-                  </div>
-                  <div role="button" className="p-3">
-                    เลขวิน
-                  </div>
+                  <Link href="/home/utils">
+                    <div role="button" className="p-3">
+                      ชุดรวมเลข
+                    </div>
+                  </Link>
+                  <Link href="/home/lak">
+                    <div role="button" className="p-3">
+                      เลขลาก
+                    </div>
+                  </Link>
+                  <Link href="/home/win">
+                    <div role="button" className="p-3">
+                      เลขวิน
+                    </div>
+                  </Link>
                 </nav>
               </div>
             )}
@@ -218,13 +228,21 @@ export default function Sidebar() {
             {isAdminZoneOpen && (
               <div className="overflow-hidden">
                 <nav className="flex flex-col gap-1 p-2 text-blue-gray-700">
-                  <div role="button" className="p-3">
-                    เพิ่มสินค้า
-                  </div>
-                  <div className="p-3">สมัครสมาชิก</div>
-                  <div role="button" className="p-3">
-                    สมัครสมาชิก
-                  </div>
+                  <Link href="/home/addproduct">
+                    <div role="button" className="p-3">
+                      เพิ่มสินค้า
+                    </div>
+                  </Link>
+                  <Link href="/auth/register">
+                    <div role="button" className="p-3">
+                      สมัครสมาชิก
+                    </div>
+                  </Link>
+                  <Link href="/admin">
+                    <div role="button" className="p-3">
+                      home admin
+                    </div>
+                  </Link>
                 </nav>
               </div>
             )}
