@@ -31,7 +31,7 @@ function LayoutContent({ children }) {
   return (
     <div className="flex">
       {showSidebar && <Sidebar />}
-      <main className={`pt-16 flex-1 ${displaySidebar ? 'ml-[20rem]' : ''}`}>
+      <main className={`pt-16 flex-1 sm:ml-[20rem] ml-0`}>
         {children}
       </main>
     </div>

@@ -13,6 +13,9 @@ module.exports = {
       height: {
         'screen-minus-navbar': 'calc(80vh)',
       },
+      margin: {
+        '66px': '66px',
+      },
     },
   },
   plugins: [
