@@ -1,5 +1,14 @@
 // src/app/404.js
+"use client";
+
+import { useEffect } from "react";
+import { useSidebarVisibility } from "./components/appbar/SidebarVisibilityContext";
 export default function NotFound() {
+  const { setShowSidebar } = useSidebarVisibility();
+  useEffect(() => {
+    setShowSidebar(false); // ซ่อน Sidebar เมื่อหน้า 404 ถูกโหลด
+    return () => setShowSidebar(true); // แสดง Sidebar อีกครั้งเมื่อออกจากหน้า 404
+  }, [setShowSidebar]);
     return (
       <main className="grid h-screen-minus-navbar place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">

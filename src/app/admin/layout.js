@@ -1,25 +1,12 @@
 // src/app/admin/layout.js
 "use client";
-
-import SidebarAdmin from '@/app/components/SidebarAdmin';
-import React, { useState } from 'react';
-import { SlArrowRight } from "react-icons/sl";
+import React from 'react';
 
 export default function AdminLayout({ children }) {
-  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
-    <div className="flex">
-        {!showSidebar && (
-        <SlArrowRight
-          onClick={() => setShowSidebar(true)}
-          className="md:hidden m-3 text-lg"
-        />
-      )}
-      <SidebarAdmin show={showSidebar} setter={setShowSidebar} /> 
-      <div className="flex-grow md:pl-[255px] pt-1">
+      <div>
         {children} 
       </div>
-    </div>
   );
 }
