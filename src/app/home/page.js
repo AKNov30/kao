@@ -6,6 +6,8 @@ import Link from "next/link"; // นำเข้า Link
 export default function HomePage() {
   const [bets, setBets] = useState({
     daily: [],
+    government: [],
+    thai: [],
     international: [],
     stock: [],
     stock_v: [],
@@ -21,6 +23,8 @@ export default function HomePage() {
         // แยกประเภทข้อมูลตาม type_bet
         const categorizedBets = {
           daily: data.filter((bet) => bet.type_bet === "daily"),
+          government: data.filter((bet) => bet.type_bet === "government"),
+          thai: data.filter((bet) => bet.type_bet === "thai"),
           international: data.filter((bet) => bet.type_bet === "international"),
           stock: data.filter((bet) => bet.type_bet === "stock"),
           stock_v: data.filter((bet) => bet.type_bet === "stock_v"),
@@ -92,6 +96,8 @@ export default function HomePage() {
   return (
     <div className="p-6">
       {renderBets(bets.daily, "รายวัน")}
+      {renderBets(bets.government, "รัฐบาล")}
+      {renderBets(bets.thai, "ไทย")}
       {renderBets(bets.international, "ต่างประเทศ")}
       {renderBets(bets.stock, "หุ้น")}
       {renderBets(bets.stock_v, "หุ้นวี")}
