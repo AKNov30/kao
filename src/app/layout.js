@@ -36,7 +36,7 @@ function LayoutContent({ children }) {
     <div className="flex">
       <SidebarVisibilityProvider>
       {showSidebar && <Sidebar />}
-      <main className={`pt-16 flex-1 ${hideSidebar || !isLoggedIn ? 'ml-0' : 'sm:ml-[20rem] ml-0'}`}>
+      <main className={`pt-16 flex-1 ${hideSidebar || !isLoggedIn ? 'ml-0' : 'md:ml-[14rem] xl:ml-[18rem] ml-0'}`}>
       {/* <main className={`pt-16 flex-1 sm:ml-[20rem] ml-0`}> */}
         {children}
       </main>

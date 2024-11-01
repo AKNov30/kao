@@ -31,7 +31,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Button for opening/closing sidebar on mobile */}
-      <div className="fixed top-0 left-0 z-50 p-2 sm:hidden">
+      <div className="fixed top-0 left-0 z-50 p-2 md:hidden">
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="text-gray-700 p-2 rounded-md hover:bg-gray-200 focus:outline-none"
@@ -47,9 +47,9 @@ export default function Sidebar() {
       {/* Sidebar */}
       <div
         className={classNames(
-          "fixed top-0 left-0 z-50 mt-66px h-[calc(100vh-2rem)] w-full max-w-[20rem] flex-col bg-white bg-clip-border p-4 text-gray-700 border-r transition-transform",
+          "fixed top-0 left-0 z-50 mt-66px h-[calc(100vh-2rem)] sm:w-[14rem] xl:w-[18rem] max-w-[20rem] flex-col bg-white bg-clip-border p-4 text-gray-700 border-r transition-transform",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full",
-          "sm:translate-x-0"
+          "md:translate-x-0"
         )}
       >
         <div className="p-4 mb-2">
@@ -67,7 +67,7 @@ export default function Sidebar() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-6"
+                className="size-4 xl:size-6"
               >
                 <path
                   fillRule="evenodd"
@@ -87,7 +87,7 @@ export default function Sidebar() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-6"
+                className="size-4 xl:size-6"
               >
                 <path
                   fillRule="evenodd"
@@ -108,7 +108,7 @@ export default function Sidebar() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-6"
+                className="size-4 xl:size-6"
               >
                 <path d="m20.798 11.012-3.188 3.416L9.462 6.28l4.24-4.542a.75.75 0 0 1 1.272.71L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262ZM3.202 12.988 6.39 9.572l8.148 8.148-4.24 4.542a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262ZM3.53 2.47a.75.75 0 0 0-1.06 1.06l18 18a.75.75 0 1 0 1.06-1.06l-18-18Z" />
               </svg>
@@ -116,18 +116,18 @@ export default function Sidebar() {
             บิลเสีย
           </Link>
           {/* ตัวช่วยคีย์ */}
-          <div className="relative block w-full">
+          <div className="relative block">
             <button
               type="button"
               onClick={() => setIsKeyHelperOpen(!isKeyHelperOpen)}
-              className="flex items-center justify-between w-full p-3 font-sans text-xl antialiased font-semibold leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900"
+              className="flex items-center justify-between sm:w-[12rem] xl:w-[15rem] p-3 font-sans text-xl antialiased font-semibold leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900"
             >
               <div className="grid mr-4 place-items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="size-6"
+                  className="size-4 xl:size-6"
                 >
                   <path
                     fillRule="evenodd"
@@ -189,18 +189,18 @@ export default function Sidebar() {
 
           {/* Admin Zone */}
           {session.user.role === 'admin' && (
-            <div className="relative block w-full">
+            <div className="relative block">
               <button
                 type="button"
                 onClick={() => setIsAdminZoneOpen(!isAdminZoneOpen)}
-                className="flex items-center justify-between w-full p-3 font-sans text-xl antialiased font-semibold leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900"
+                className="flex items-center justify-between sm:w-[12rem] xl:w-[15rem] p-3 font-sans text-xl antialiased font-semibold leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900"
               >
                 <div className="grid mr-4 place-items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="size-6"
+                    className="size-4 xl:size-6"
                   >
                     <path d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002c-.114.06-.227.119-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.173v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-4.634-1.527.75.75 0 0 1-.231-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
                     <path d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286.921.304 1.83.634 2.726.99v1.27a1.5 1.5 0 0 0-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.66a6.727 6.727 0 0 0 .551-1.607 1.5 1.5 0 0 0 .14-2.67v-.645a48.549 48.549 0 0 1 3.44 1.667 2.25 2.25 0 0 0 2.12 0Z" />
