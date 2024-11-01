@@ -7,7 +7,6 @@ import rice from "@/public/image/rice.svg";
 import logo from "@/public/image/logo.svg";
 import { usePathname } from "next/navigation";
 import { Disclosure, Menu } from "@headlessui/react";
-import { HiMenu, HiX } from "react-icons/hi";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

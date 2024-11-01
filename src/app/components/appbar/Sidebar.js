@@ -21,6 +21,10 @@ export default function Sidebar() {
     return null;
   }
 
+  if (!session) {
+    return null;
+  }
+
   const handleLogout = () => {
     signOut({ callbackUrl: "/auth/login" });
   };
@@ -184,69 +188,71 @@ export default function Sidebar() {
           </div>
 
           {/* Admin Zone */}
-          <div className="relative block w-full">
-            <button
-              type="button"
-              onClick={() => setIsAdminZoneOpen(!isAdminZoneOpen)}
-              className="flex items-center justify-between w-full p-3 font-sans text-xl antialiased font-semibold leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900"
-            >
-              <div className="grid mr-4 place-items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="size-6"
-                >
-                  <path d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002c-.114.06-.227.119-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.173v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-4.634-1.527.75.75 0 0 1-.231-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
-                  <path d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286.921.304 1.83.634 2.726.99v1.27a1.5 1.5 0 0 0-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.66a6.727 6.727 0 0 0 .551-1.607 1.5 1.5 0 0 0 .14-2.67v-.645a48.549 48.549 0 0 1 3.44 1.667 2.25 2.25 0 0 0 2.12 0Z" />
-                  <path d="M4.462 19.462c.42-.419.753-.89 1-1.395.453.214.902.435 1.347.662a6.742 6.742 0 0 1-1.286 1.794.75.75 0 0 1-1.06-1.06Z" />
-                </svg>
-              </div>
-              <p className="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
-                Addmin Zone
-              </p>
-              <span className="ml-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  className={`w-4 h-4 mx-auto transition-transform ${
-                    isAdminZoneOpen ? "rotate-180" : ""
-                  }`}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                  ></path>
-                </svg>
-              </span>
-            </button>
-            {isAdminZoneOpen && (
-              <div className="overflow-hidden">
-                <nav className="flex flex-col gap-1 p-2 text-blue-gray-700">
-                  <Link href="/home/addproduct">
-                    <div role="button" className="p-3">
-                      เพิ่มสินค้า
-                    </div>
-                  </Link>
-                  <Link href="/auth/register">
-                    <div role="button" className="p-3">
-                      สมัครสมาชิก
-                    </div>
-                  </Link>
-                  <Link href="/admin">
-                    <div role="button" className="p-3">
-                      home admin
-                    </div>
-                  </Link>
-                </nav>
-              </div>
-            )}
-          </div>
+          {session.user.role === 'admin' && (
+            <div className="relative block w-full">
+              <button
+                type="button"
+                onClick={() => setIsAdminZoneOpen(!isAdminZoneOpen)}
+                className="flex items-center justify-between w-full p-3 font-sans text-xl antialiased font-semibold leading-snug text-left transition-colors border-b-0 select-none border-b-blue-gray-100 text-blue-gray-900 hover:text-blue-gray-900"
+              >
+                <div className="grid mr-4 place-items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="size-6"
+                  >
+                    <path d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002c-.114.06-.227.119-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.173v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-4.634-1.527.75.75 0 0 1-.231-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
+                    <path d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286.921.304 1.83.634 2.726.99v1.27a1.5 1.5 0 0 0-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.66a6.727 6.727 0 0 0 .551-1.607 1.5 1.5 0 0 0 .14-2.67v-.645a48.549 48.549 0 0 1 3.44 1.667 2.25 2.25 0 0 0 2.12 0Z" />
+                    <path d="M4.462 19.462c.42-.419.753-.89 1-1.395.453.214.902.435 1.347.662a6.742 6.742 0 0 1-1.286 1.794.75.75 0 0 1-1.06-1.06Z" />
+                  </svg>
+                </div>
+                <p className="block mr-auto font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-900">
+                  Addmin Zone
+                </p>
+                <span className="ml-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className={`w-4 h-4 mx-auto transition-transform ${
+                      isAdminZoneOpen ? "rotate-180" : ""
+                    }`}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    ></path>
+                  </svg>
+                </span>
+              </button>
+              {isAdminZoneOpen && (
+                <div className="overflow-hidden">
+                  <nav className="flex flex-col gap-1 p-2 text-blue-gray-700">
+                    <Link href="/admin">
+                      <div role="button" className="p-3">
+                        home admin
+                      </div>
+                    </Link>
+                    <Link href="/admin/addproduct">
+                      <div role="button" className="p-3">
+                        เพิ่มสินค้า
+                      </div>
+                    </Link>
+                    <Link href="/auth/register">
+                      <div role="button" className="p-3">
+                        สมัครสมาชิก
+                      </div>
+                    </Link>
+                  </nav>
+                </div>
+              )}
+            </div>
+          )}
           <button
             onClick={handleLogout}
             className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900"

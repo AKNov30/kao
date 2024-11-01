@@ -1,10 +1,8 @@
 // app/api/auth/[...nextauth]/route
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import mysql from "mysql2/promise";
+import db from "../../db";
 import bcrypt from "bcrypt";
-
-const db = await mysql.createConnection(process.env.DATABASE_URL);
 
 export const authOptions = {
   providers: [
