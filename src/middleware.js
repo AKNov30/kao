@@ -6,13 +6,16 @@ export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const { pathname } = req.nextUrl;
 
+  const response = NextResponse.next();
+  response.headers.set('Cache-Control', 'no-store');
+
   // ถ้าหน้านั้นๆ เป็น public page ให้ข้าม middleware นี้ได้เลย
   const publicPaths = ["/auth/login"];
   if (publicPaths.some((path) => pathname.startsWith(path))) {
     if (token && pathname === "/auth/login") {
       return NextResponse.redirect(new URL("/home", req.url));
     }
-    return NextResponse.next();
+    return response;
   }
 
   // Debugging: ตรวจสอบค่า token และ pathname
@@ -65,7 +68,7 @@ export async function middleware(req) {
   }
 
   console.log("Access granted to path:", pathname);
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
