@@ -40,54 +40,50 @@ export default function HomePage() {
   const renderBets = (betsArray, title) => (
     <div className="mb-6">
       <h2 className="text-2xl font-bold mb-4">{title}</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 4xl:grid-cols-6 gap-4">
         {betsArray.map((bet) => (
           <Link key={bet.bet_id} href={`/home/${bet.bet_id}`}>
-            <div className="border rounded-lg p-4 shadow-lg bg-white cursor-pointer">
-              <div className="flex items-center mb-2">
-                <img
-                  src={bet.image_url}
-                  alt={bet.lottery_name}
-                  className="w-[74px] h-[44px] object-cover rounded mr-2" // กำหนดขนาดรูปภาพและระยะห่างด้านขวา
-                />
-                <div>
-                  <h3 className="text-lg font-semibold">{bet.lottery_name}</h3>
-                  <p className="text-sm text-gray-500">
-                    {new Date().toLocaleDateString("th-TH")}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <span className="text-gray-700 flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                    />
-                  </svg>
-                  2:36:44
-                </span>
-                <span
-                  className={`text-xs font-bold py-1 px-3 rounded ${
-                    bet.status === "closed"
-                      ? "bg-red-500 text-white"
-                      : "bg-green-500 text-white"
-                  }`}
-                >
-                  ปิดรับ <TimeDisplay time={bet.close_time} />
-                </span>
+          <div className="border-l-8 hover:border-l-[10px] border-blue-500 hover:border-green-500 rounded-lg p-3 shadow-lg bg-white cursor-pointer ">
+            <div className="flex items-center mb-2">
+              <img
+                src={bet.image_url}
+                alt={bet.lottery_name}
+                className="w-[74px] h-[44px] object-cover rounded mr-2"
+              />
+              <div className="pl-2">
+                <h3 className="text-lg font-semibold">{bet.lottery_name}</h3>
+                <p className="text-sm text-gray-500">
+                  {new Date().toLocaleDateString("th-TH")}
+                </p>
               </div>
             </div>
-          </Link>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-700 flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="h-5 w-5 mr-1"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                2:36:44
+              </span>
+              <span
+                className="text-xs font-bold py-1 px-3 rounded-full bg-red-500 text-white"
+              >
+                ปิดรับ <TimeDisplay time={bet.close_time} />
+              </span>
+            </div>
+          </div>
+        </Link>
+        
         ))}
       </div>
     </div>
