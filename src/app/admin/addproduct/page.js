@@ -118,8 +118,8 @@ export default function AddProductPage() {
                   required
                 >
                   <option value="daily">รายวัน</option>
-                  <option value="government">รายวัน</option>
-                  <option value="thai">รายวัน</option>
+                  <option value="government">รัฐบาล</option>
+                  <option value="thai">ไทย</option>
                   <option value="international">ต่างประเทศ</option>
                   <option value="stock">หุ้น</option>
                   <option value="stock_v">หุ้นวี</option>
